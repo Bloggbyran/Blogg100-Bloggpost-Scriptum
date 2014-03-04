@@ -153,13 +153,13 @@ class Blogg100_settings
     {
         isset( $this->options['count_option'] ) ? $val = $this->options['count_option'] : $val = 'daily';
        
-        $text_suggestion1 = 'Detta är inlägg {{antal dagar med inlägg}} av 100 i intitiativet <a href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg om dagen med start den 1 mars 2014.';
+        $text_suggestion1 = 'Detta är inlägg {{antal dagar med inlägg}} av 100 i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg om dagen med start den 1 mars 2014.';
         print '<input data-text_suggestion="' . $text_suggestion1 . '" type="radio" id="count_type_day" name="blogg100_options[count_option]" value="daily" ' . checked( 'daily', $val, false) . '/> <label for="count_type_day">Minst ett inlägg per dag i 100 dagar.</label><br>';
        
-        $text_suggestion2 = 'Detta är inlägg {{antal poster totalt}}, i intitiativet <a href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg i snitt per dag i 100 dagar från den 1 mars 2014.';
+        $text_suggestion2 = 'Detta är inlägg {{antal poster totalt}}, i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg i snitt per dag i 100 dagar från den 1 mars 2014.';
         print '<input data-text_suggestion="' . $text_suggestion2 . '" type="radio" id="count_type_total" name="blogg100_options[count_option]" value="total" ' . checked( 'total', $val, false) . '/> <label for="count_type_total">100 inlägg totalt under 100 dagar.</label><br>';
        
-        $text_suggestion3 = 'Detta här inlägget är postat dag {{antal dagar in i blogg100}} i intitiativet <a href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att försöka skriva ett blogginlägg per dag i 100 dagar.';
+        $text_suggestion3 = 'Detta här inlägget är postat dag {{antal dagar in i blogg100}} i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att försöka skriva ett blogginlägg per dag i 100 dagar.';
         print '<input data-text_suggestion="' . $text_suggestion3 . '" type="radio" id="count_type_happygolucky" name="blogg100_options[count_option]" value="happygolucky" ' . checked( 'happygolucky', $val, false) . '/> <label for="count_type_happygolucky">Räknar? Är glad om jag skriver på rätt dag.</label><br>';
 
         print '<input data-text_suggestion="" type="radio" id="count_type_custom" name="blogg100_options[count_option]" value="custom" ' . checked( 'custom', $val, false) . '/> <label for="count_type_custom">Egen formulering.</label>';
