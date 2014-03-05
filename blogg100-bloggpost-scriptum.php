@@ -2,7 +2,7 @@
 /*
 Plugin Name: Blogg100 - Bloggpost scriptum
 Description: En plugin som lägger till en liten textsnutt om <a href='http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt'/>Blogg100</a> i slutet av varje inlägg taggat med Blogg100.
-Plugin URI: http://bloggbyran.se/blogg100-plugin
+Plugin URI: http://bloggbyran.se/bloggpost-scriptum-en-plugin-blogg100-skribenter/
 Author: Bloggbyrån
 Author URI: http://bloggbyran.se
 Version: 1.0
