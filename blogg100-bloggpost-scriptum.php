@@ -231,9 +231,9 @@ function add_post_scriptum($content)
         $post_number_total  = count($query->posts);
         $post_number_daily  = count($date_counter);
         
-        $unixtime_postdate  = strtotime($tag_post->post_date);
+        $unixtime_postdate  = strtotime($post->post_date);
         $unixtime_startdate = strtotime($start_year . '-' . $start_month . '-' .  $start_day);
-        $day_number         = ceil(($unixtime_postdate - $unixtime_startdate)/(60*60*24)) + 1; // Add one extra day in order to make the counting more logical to humans
+        $day_number         = ceil(($unixtime_postdate - $unixtime_startdate)/(60*60*24));
         
         $ps_text            = $blogg100_options['ps_text'];
         $ps_text            = preg_replace('/{{antal dagar med inlägg}}/'   , $post_number_daily, $ps_text);
