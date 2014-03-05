@@ -200,7 +200,13 @@ function add_post_scriptum($content)
     $start_month    = 3;
     $start_day      = 1; 
 
-    if(has_tag(  $terms , $post->ID) && is_single())
+    /*  Output blogpost scriptum only if it's tagged with the correct tag,
+        is displayed on a single page and is published after the 
+        startdate (Won't conflict with #blogg100 ano 2013)
+    */
+    if( has_tag(  $terms , $post->ID) && 
+        is_single() && 
+        strtotime($post->post_date) > strtotime( $start_year . '-' . $start_month . '-' . $start_day) )
     {   
         $blogg100_options = get_option('blogg100_options');
 
@@ -211,7 +217,8 @@ function add_post_scriptum($content)
                     'month' => $start_month,
                     'day'   => $start_day,
                     'hour'  => 0,
-                    'minute'=> 1
+                    'minute'=> 0, 
+                    'second'=> 1
                 ),
                 'before'    => $post->post_date,
                 'inclusive' => true,
