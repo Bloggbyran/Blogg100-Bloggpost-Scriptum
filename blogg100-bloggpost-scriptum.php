@@ -233,7 +233,7 @@ function add_post_scriptum($content)
         
         $unixtime_postdate  = strtotime($tag_post->post_date);
         $unixtime_startdate = strtotime($start_year . '-' . $start_month . '-' .  $start_day);
-        $day_number         = ceil(($unixtime_postdate - $unixtime_startdate)/(60*60*24));
+        $day_number         = ceil(($unixtime_postdate - $unixtime_startdate)/(60*60*24)) + 1; // Add one extra day in order to make the counting more logical to humans
         
         $ps_text            = $blogg100_options['ps_text'];
         $ps_text            = preg_replace('/{{antal dagar med inlägg}}/'   , $post_number_daily, $ps_text);
