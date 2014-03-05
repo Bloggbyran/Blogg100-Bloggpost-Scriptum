@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Blogg100 - Bloggpost scriptum
-Description: En plugin som lägger till en liten textsnutt om <a href='http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt'/>Blogg100</a> i slutet av varje inlägg taggat med Blogg100.
+Description: En plugin som lägger till en liten textsnutt om <a href='http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt'/>Blogg100</a> i slutet av varje inlägg <strong>taggat med Blogg100</strong>.
 Plugin URI: http://bloggbyran.se/bloggpost-scriptum-en-plugin-blogg100-skribenter/
 Author: Bloggbyrån
 Author URI: http://bloggbyran.se
-Version: 1.0
+Version: 1.01
 License: GPL2
 */
 
@@ -143,7 +143,7 @@ class Blogg100_settings
      */
     public function print_section_info()
     {
-        print 'Anpassa texten som visas under varje Blogg100-inlägg. Lite beroende på hur du räknar, så kan vi föreslå några formuleringar:';
+        print 'Anpassa texten som visas under varje inlägg som du taggat <em>blogg100</em> från och med 1 mars 2014. Lite beroende på hur du räknar, så kan vi föreslå några formuleringar:';
     }
 
     /** 
