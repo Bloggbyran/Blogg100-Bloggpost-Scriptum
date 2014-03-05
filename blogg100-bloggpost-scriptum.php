@@ -5,7 +5,7 @@ Description: En plugin som lägger till en liten textsnutt om <a href='http://bi
 Plugin URI: http://bloggbyran.se/bloggpost-scriptum-en-plugin-blogg100-skribenter/
 Author: Bloggbyrån
 Author URI: http://bloggbyran.se
-Version: 1.01
+Version: 1.02
 License: GPL2
 */
 
@@ -60,7 +60,7 @@ class Blogg100_settings
         ?>
         <div class="wrap">
             <img style="float:left; margin-right: 10px; width: 50px;" src="<?php echo plugin_dir_url( __FILE__ ); ?>/Blogg100-logo-82x70.png">          
-            <h2>Blogg 100 - Post Scriptum</h2> 
+            <h2>Blogg 100 - Bloggpost Scriptum</h2> 
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
@@ -170,7 +170,7 @@ class Blogg100_settings
      */
     public function ps_callback()
     {   
-        $helptext = 'Använd variablerna {{antal dagar med inlägg}}, {{antal poster totalt}} och {{antal dagar in i blogg100}} för att skapa ditt personliga meddelande.';
+        $helptext = 'Använd variablerna {{antal dagar med inlägg}}, {{antal poster totalt}} och {{antal dagar in i blogg100}} för att skapa ditt personliga meddelande under blogginlägget.';
         printf(
             '<textarea id="ps_text" style="width: 500px; height: 100px;" name="blogg100_options[ps_text]">%s</textarea>' .
             '<p class="description" style="width: 500px;">'. $helptext .'<p>',
@@ -232,7 +232,7 @@ function add_post_scriptum($content)
         $post_number_daily  = count($date_counter);
         
         $unixtime_postdate  = strtotime($post->post_date);
-        $unixtime_startdate = strtotime($start_year . '-' . $start_month . '-' .  $start_day);
+        $unixtime_startdate = strtotime($start_year . '-' . $start_month . '-' .  $start_day );
         $day_number         = ceil(($unixtime_postdate - $unixtime_startdate)/(60*60*24));
         
         $ps_text            = $blogg100_options['ps_text'];
