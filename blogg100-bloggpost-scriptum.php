@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Blogg100 - Bloggpost scriptum
-Description: En plugin som lägger till en liten textsnutt om <a href='http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt'/>Blogg100</a> i slutet av varje inlägg <strong>taggat med Blogg100</strong>.
+Description: En plugin som lägger till en liten textsnutt om #Blogg100 i slutet av varje inlägg <strong>taggat med Blogg100</strong>.
 Plugin URI: http://bloggbyran.se/bloggpost-scriptum-en-plugin-blogg100-skribenter/
 Author: Bloggbyrån
 Author URI: http://bloggbyran.se
@@ -10,7 +10,7 @@ License: GPL2
 */
 
 function set_blogg100_default_options(){
-    $blogg100_options = array(  'ps_text'       => 'Detta är inlägg {{antal dagar med inlägg}}, dag {{antal dagar in i blogg100}} i intitiativet #blogg100 som går ut på att skriva ett blogginlägg om dagen med start den 1 mars 2014. Detta är inlägg {{antal poster totalt}} av 100.',
+    $blogg100_options = array(  'ps_text'       => 'Initiativet #blogg100 går ut på att skriva blogginlägg varje dag i 100 dagar. Detta är inlägg {{antal poster totalt}} av 100. Jag har lyckats skriva inlägg {{antal dagar med inlägg}} dagar av {{antal dagar in i blogg100}}. ',
                                 'count_option'  => 'daily',
                                 'logo_bottom'   => '1'
     );                      
@@ -143,7 +143,7 @@ class Blogg100_settings
      */
     public function print_section_info()
     {
-        print 'Anpassa texten som visas under varje inlägg som du taggat <em>blogg100</em> från och med 1 mars 2014. Lite beroende på hur du räknar, så kan vi föreslå några formuleringar:';
+        print 'Anpassa texten som visas under varje inlägg som du taggat <em>blogg100</em>. Lite beroende på hur du räknar, så kan vi föreslå några formuleringar:';
     }
 
     /** 
@@ -153,13 +153,13 @@ class Blogg100_settings
     {
         isset( $this->options['count_option'] ) ? $val = $this->options['count_option'] : $val = 'daily';
        
-        $text_suggestion1 = 'Detta är inlägg {{antal dagar med inlägg}} av 100 i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg om dagen med start den 1 mars 2014.';
+        $text_suggestion1 = 'Detta är inlägg {{antal dagar med inlägg}} av 100 i intitiativet #Blogg100 som går ut på att skriva ett blogginlägg om dagen med start den  {{startdatum för året}}.';
         print '<input data-text_suggestion="' . $text_suggestion1 . '" type="radio" id="count_type_day" name="blogg100_options[count_option]" value="daily" ' . checked( 'daily', $val, false) . '/> <label for="count_type_day">Minst ett inlägg per dag i 100 dagar.</label><br>';
        
-        $text_suggestion2 = 'Detta är inlägg {{antal poster totalt}}, i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att skriva ett blogginlägg i snitt per dag i 100 dagar från den 1 mars 2014.';
+        $text_suggestion2 = 'Detta är inlägg {{antal poster totalt}}, i intitiativet #Blogg100 som går ut på att skriva ett blogginlägg i snitt per dag i 100 dagar från den  {{startdatum för året}}.';
         print '<input data-text_suggestion="' . $text_suggestion2 . '" type="radio" id="count_type_total" name="blogg100_options[count_option]" value="total" ' . checked( 'total', $val, false) . '/> <label for="count_type_total">100 inlägg totalt under 100 dagar.</label><br>';
        
-        $text_suggestion3 = 'Detta här inlägget är postat dag {{antal dagar in i blogg100}} i intitiativet <a rel=\'nofollow\' href=\'http://bisonblog.se/2014/02/blogg100-tredje-gangen-gillt/\'>#Blogg100</a> som går ut på att försöka skriva ett blogginlägg per dag i 100 dagar.';
+        $text_suggestion3 = 'Detta här inlägget är postat dag {{antal dagar in i blogg100}} i intitiativet #Blogg100 som går ut på att försöka skriva ett blogginlägg per dag i 100 dagar.';
         print '<input data-text_suggestion="' . $text_suggestion3 . '" type="radio" id="count_type_happygolucky" name="blogg100_options[count_option]" value="happygolucky" ' . checked( 'happygolucky', $val, false) . '/> <label for="count_type_happygolucky">Räknar? Är glad om jag skriver på rätt dag.</label><br>';
 
         print '<input data-text_suggestion="" type="radio" id="count_type_custom" name="blogg100_options[count_option]" value="custom" ' . checked( 'custom', $val, false) . '/> <label for="count_type_custom">Egen formulering.</label>';
@@ -196,11 +196,22 @@ function add_post_scriptum($content)
     global $post;
     $terms = 'blogg100';
     
-    $start_year     = 2014;
-    $start_month    = 3;
-    $start_day      = 1; 
-
-    /*  Output blogpost scriptum only if it's tagged with the correct tag,
+    $current_year = mysql2date('Y', $post->post_date);
+	if ($current_year == 2012) {
+		$start_year 	= 2012;
+		$start_month    = 1;
+		$start_day      = 9; 
+	} else if ($current_year == 2013) {
+		$start_year 	= 2013;
+		$start_month    = 1;
+		$start_day      = 23; 
+	} else if ($current_year >= 2014) {
+		$start_year 	= $current_year;
+		$start_month    = 3;
+		$start_day      = 1; 
+	}
+	
+	/*  Output blogpost scriptum only if it's tagged with the correct tag,
         is displayed on a single page and is published after the 
         startdate (Won't conflict with #blogg100 ano 2013)
     */
@@ -245,6 +256,7 @@ function add_post_scriptum($content)
         $ps_text            = $blogg100_options['ps_text'];
         $ps_text            = preg_replace('/{{antal dagar med inlägg}}/'   , $post_number_daily, $ps_text);
         $ps_text            = preg_replace('/{{antal poster totalt}}/'      , $post_number_total, $ps_text);
+        $ps_text            = preg_replace('/{{startdatum för året}}/'      , date_i18n( get_option( 'date_format' ), $unixtime_startdate ), $ps_text);
         $ps_text            = preg_replace('/{{antal dagar in i blogg100}}/', $day_number, $ps_text);
 
         $post_scriptum = '<p class="blogg100-ps">' . $ps_text .'</p>';
