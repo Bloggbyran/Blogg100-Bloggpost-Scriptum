@@ -170,11 +170,11 @@ class Blogg100_settings
      */
     public function ps_callback()
     {   
-        $helptext = 'Använd variablerna {{antal dagar med inlägg}}, {{antal poster totalt}} och {{antal dagar in i blogg100}} för att skapa ditt personliga meddelande under blogginlägget.';
+        $helptext = 'Använd variablerna {{startdatum för året}}, {{antal dagar med inlägg}}, {{antal poster totalt}} och {{antal dagar in i blogg100}} för att skapa ditt personliga meddelande under blogginlägget.';
         printf(
             '<textarea id="ps_text" style="width: 500px; height: 100px;" name="blogg100_options[ps_text]">%s</textarea>' .
             '<p class="description" style="width: 500px;">'. $helptext .'<p>',
-                isset( $this->options['ps_text'] ) ? esc_attr( $this->options['ps_text']) : 'Detta är inlägg {{antal dagar med inlägg}}, dag {{antal dagar in i blogg100}} i intitiativet #blogg100 som går ut på att skriva ett blogginlägg om dagen med start den 1 mars 2014. Detta är inlägg {{antal poster totalt}} av 100.'
+                isset( $this->options['ps_text'] ) ? esc_attr( $this->options['ps_text']) : 'Detta är inlägg {{antal dagar med inlägg}}, dag {{antal dagar in i blogg100}} i intitiativet #blogg100 som går ut på att skriva ett blogginlägg om dagen med start den {{startdatum för året}}. Detta är inlägg {{antal poster totalt}} av 100.'
         );
     }
 
